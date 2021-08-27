@@ -132,4 +132,42 @@
     "value": false,
     "text": "Background"
   },
+  "audioSplatType": {
+    "type": "dropdown",
+    "value": 0,
+    "text": "Audio Splats",
+    "items": [
+      "Random",
+      "Custom"
+    ]
+  },
+  "simpleAudioBands": {
+    "type": "checkbox",
+    "value": true,
+    "text": "Use Simple Audio bands"
+  },
+  "volumeExceedThreshold": {
+    "max": 100,
+    "min": 0,
+    "tick": 100,
+    "text": "Volume Exceed Threshold %",
+    "type": "slider",
+    "value": 80
+  },
+  "volumeAmbientThreshold": {
+    "max": 100,
+    "min": 0,
+    "tick": 100,
+    "text": "Volume Ambient Threshold %",
+    "type": "slider",
+    "value": 10
+  },
+  "ambientSplatInterval": {
+    "max": 60,
+    "min": 1,
+    "tick": 60,
+    "text": "Ambient Splat interval /s",
+    "type": "slider",
+    "value": 3
+  }
 }

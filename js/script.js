@@ -107,7 +107,32 @@ function livelyAudioListener(audioArray)  {
         bass += audioArray[half + i];
     }
     bass /= (config.FREQ_RANGE * 2);
-    multipleSplats(Math.floor((bass * config.SOUND_SENSITIVITY) * 10));
+
+    switch (_audioSplatType) {
+      case 0:  // Random splats
+        multipleSplats(Math.floor((bass * config.SOUND_SENSITIVITY) * 10));
+        break;
+      case 1:  // Custom audio splats
+        tickAudio(audioArray);
+        break;
+    }
+
+    let sum = 0;
+    audioArray.forEach(val => sum += Math.min(val, 1));
+
+    if (sum > _volumeExceedThreshold) {
+      tickExceedingVolumeAudio();
+    }
+
+    if (sum < _volumeAmbientThreshold && !isTickingAmbientVolume) {
+      if (volumeAmbientThresholdTimeout === 0) {
+        volumeAmbientThresholdTimeout = setTimeout(() => {
+          ambientAudioSplats(true);
+        }, 5000);
+      }
+    } else {
+      ambientAudioSplats(false);
+    }
 }
 
 function multipleSplats (amount) {
