@@ -115,6 +115,8 @@ let volumeBands = {
 };
 
 
+const initDelta = () => { return {last: 0, delta: 0}; };
+
 let simpleDeltas = {
   bass: initDelta(),
   midRange: initDelta(),

@@ -163,108 +163,123 @@ var _bgImageChk = false;
 var _bgImagePath = "";
 function livelyPropertyListener(name, val)
 {
-	switch(name) {
+  switch(name) {
     case "quality":
-    	switch(val){
-	    	case 0:
-	      		config.DYE_RESOLUTION = 1024;
-	    		break;
-	    	case 1:
-	    		config.DYE_RESOLUTION = 512;
-	    		break;
-	    	case 2:
-	    		config.DYE_RESOLUTION = 256;
-	    		break;
-	    	case 3:
-	    		config.DYE_RESOLUTION = 128;
-	    		break;
-    	}
+      switch(val){
+        case 0:
+            config.DYE_RESOLUTION = 1024;
+          break;
+        case 1:
+          config.DYE_RESOLUTION = 512;
+          break;
+        case 2:
+          config.DYE_RESOLUTION = 256;
+          break;
+        case 3:
+          config.DYE_RESOLUTION = 128;
+          break;
+      }
       initFramebuffers();
       break;
-	case "simResolution":
-		switch(val){
-			case 0:
-		  		config.SIM_RESOLUTION = 32;
-				break;
-			case 1:
-				config.SIM_RESOLUTION = 64;
-				break;
-			case 2:
-				config.SIM_RESOLUTION = 128;
-				break;
-			case 3:
-				config.SIM_RESOLUTION = 256;
-				break;
-		}
-		initFramebuffers();
-		break;
-	case "densityDiffusion":
-		config.DENSITY_DISSIPATION = val/10;
-		break;
-	case "velocityDiffusion":
-		config.VELOCITY_DISSIPATION = val/100;
-		break;
-	case "pressure":
-		config.PRESSURE = val/100;
-		break;
-	case "vorticity":
-		config.CURL = val;
-		break;
-	case "splatRadius":
-		config.SPLAT_RADIUS = val/100;
-		break;
-	case "shading":
-		config.SHADING = val;
-		updateKeywords();
-		break;
-	case "colorful":
-		config.COLORFUL = val;
-		break;
-	case "bloomEnable":
-		config.BLOOM = val;
-		updateKeywords();
-		break;
-	case "bloomIntensity":
-		config.BLOOM_INTENSITY = val/100;
-		break;
-	case "bloomThreshold":
-		config.BLOOM_THRESHOLD = val/100;
-		break;
-	case "sunRaysEnable":
-		config.SUNRAYS = val;
-		updateKeywords();
-		break;
-	case "sunRaysWeight":
-		config.SUNRAYS_WEIGHT = val/100;
-		break;
-	case "bgColor":
-	    const tmp = hexToRgb(val);
- 		config.BACK_COLOR.r = tmp.r;
-		config.BACK_COLOR.g = tmp.g;
-		config.BACK_COLOR.b = tmp.b;
-		break;
-	case "bgImgChk":
-        _bgImageChk = val;
-		config.TRANSPARENT = val;
+  case "simResolution":
+    switch(val){
+      case 0:
+          config.SIM_RESOLUTION = 32;
+        break;
+      case 1:
+        config.SIM_RESOLUTION = 64;
+        break;
+      case 2:
+        config.SIM_RESOLUTION = 128;
+        break;
+      case 3:
+        config.SIM_RESOLUTION = 256;
+        break;
+    }
+    initFramebuffers();
+    break;
+  case "densityDiffusion":
+    config.DENSITY_DISSIPATION = val/10;
+    break;
+  case "velocityDiffusion":
+    config.VELOCITY_DISSIPATION = val/100;
+    break;
+  case "pressure":
+    config.PRESSURE = val/100;
+    break;
+  case "vorticity":
+    config.CURL = val;
+    break;
+  case "splatRadius":
+    config.SPLAT_RADIUS = val/100;
+    break;
+  case "shading":
+    config.SHADING = val;
+    updateKeywords();
+    break;
+  case "colorful":
+    config.COLORFUL = val;
+    break;
+  case "bloomEnable":
+    config.BLOOM = val;
+    updateKeywords();
+    break;
+  case "bloomIntensity":
+    config.BLOOM_INTENSITY = val/100;
+    break;
+  case "bloomThreshold":
+    config.BLOOM_THRESHOLD = val/100;
+    break;
+  case "sunRaysEnable":
+    config.SUNRAYS = val;
+    updateKeywords();
+    break;
+  case "sunRaysWeight":
+    config.SUNRAYS_WEIGHT = val/100;
+    break;
+  case "bgColor":
+    const tmp = hexToRgb(val);
+     config.BACK_COLOR.r = tmp.r;
+    config.BACK_COLOR.g = tmp.g;
+    config.BACK_COLOR.b = tmp.b;
+    break;
+  case "bgImgChk":
+    _bgImageChk = val;
+    config.TRANSPARENT = val;
         if (_bgImageChk)
         {
             document.body.style.backgroundImage = "url(" + _bgImagePath.replace('\\', '/') + ")";
         }
-		break;	
-    case "imgSelect":
-        _bgImagePath = val;
-        if (_bgImageChk)
-        {
-            document.body.style.backgroundImage = "url(" + val.replace('\\', '/') + ")";
-        }
-        break;    
-    case "randomSplats":	
-        _randomSplats = val;
-        break;
-    case "audioReact":    
-        _audioReact = val;
-        break;
-    }
+    break;
+  case "imgSelect":
+      _bgImagePath = val;
+      if (_bgImageChk)
+      {
+          document.body.style.backgroundImage = "url(" + val.replace('\\', '/') + ")";
+      }
+      break;
+  case "randomSplats":
+    _randomSplats = val;
+    break;
+  case "audioReact":
+    _audioReact = val;
+    break;
+  case "audioSplatType":
+    _audioSplatType = val;
+    break;
+  case "simpleAudioBands":
+    _simpleBands = val;
+    break;
+  case "volumeExceedThreshold":
+    _volumeExceedThreshold = val / 100;
+    break;
+  case "volumeAmbientThreshold":
+    _volumeAmbientThreshold = val / 100;
+    break;
+  case "ambientSplatInterval":
+    _ambientSplatInterval = val * 1000;
+    break;
+  }
 }
 
 function hexToRgb(hex) {
