@@ -90,6 +90,94 @@ let fullBands = {
   ],
 };
 
+// // Debug
+// let simpleBands = {
+//   bassSplats: [
+//     new Band(
+//       ColourRangeFactory(0.0),
+//       VelocityScaleFactory(5.0),
+//       LocationRangeFactory(0.25, 0.0),
+//       RotationRangeFactory(90)
+//     )
+//   ],
+//   midRangeSplats: [
+//     new Band(
+//         ColourRangeFactory(0.33),
+//         VelocityScaleFactory(5.0),
+//         LocationRangeFactory(0.5, 0.0),
+//         RotationRangeFactory(90)
+//     )
+//   ],
+//   highSplats: [
+//     new Band(
+//         ColourRangeFactory(0.66),
+//         VelocityScaleFactory(5.0),
+//         LocationRangeFactory(0.75, 0.0),
+//         RotationRangeFactory(90)
+//     )
+//   ],
+// };
+//
+// // Debug
+// let fullBands = {
+//   subSplats: [
+//     new Band(
+//         ColourRangeFactory(0.000),
+//         VelocityScaleFactory(5.0),
+//         LocationRangeFactory(0.125, 0.0),
+//         RotationRangeFactory(90)
+//     )
+//   ],
+//   bassSplats: [
+//     new Band(
+//         ColourRangeFactory(0.125),
+//         VelocityScaleFactory(5.0),
+//         LocationRangeFactory(0.250, 0.0),
+//         RotationRangeFactory(90)
+//     )
+//   ],
+//   lowMidRangeSplats: [
+//     new Band(
+//         ColourRangeFactory(0.250),
+//         VelocityScaleFactory(5.0),
+//         LocationRangeFactory(0.375, 0.0),
+//         RotationRangeFactory(90)
+//     )
+//   ],
+//   midRangeSplats: [
+//     new Band(
+//         ColourRangeFactory(0.375),
+//         VelocityScaleFactory(5.0),
+//         LocationRangeFactory(0.500, 0.0),
+//         RotationRangeFactory(90)
+//     )
+//   ],
+//   upperMidRangeSplats: [
+//     new Band(
+//         ColourRangeFactory(0.500),
+//         VelocityScaleFactory(5.0),
+//         LocationRangeFactory(0.625, 0.0),
+//         RotationRangeFactory(90)
+//     )
+//   ],
+//   presenceSplats: [
+//     new Band(
+//         ColourRangeFactory(0.625),
+//         VelocityScaleFactory(5.0),
+//         LocationRangeFactory(0.750, 0.0),
+//         RotationRangeFactory(90)
+//     )
+//   ],
+//   brillianceSplats: [
+//     new Band(
+//         ColourRangeFactory(0.750),
+//         VelocityScaleFactory(5.0),
+//         LocationRangeFactory(0.875, 0.0),
+//         RotationRangeFactory(90)
+//     )
+//   ],
+// };
+
 let volumeBands = {
   exceed: [],
   ambient: [
@@ -115,20 +203,20 @@ let volumeBands = {
 };
 
 
-const initDelta = () => { return {last: 0, delta: 0}; };
+const initLastTick = () => { return {lastVolume: 0}; };
 
 let simpleDeltas = {
-  bass: initDelta(),
-  midRange: initDelta(),
-  high: initDelta(),
+  bass: initLastTick(),
+  midRange: initLastTick(),
+  high: initLastTick(),
 };
 
 let fullDeltas = {
-  subBass: initDelta(),
-  bass: initDelta(),
-  lowMidRange: initDelta(),
-  midRange: initDelta(),
-  upperMidRange: initDelta(),
-  presence: initDelta(),
-  brilliance: initDelta(),
+  subBass: initLastTick(),
+  bass: initLastTick(),
+  lowMidRange: initLastTick(),
+  midRange: initLastTick(),
+  upperMidRange: initLastTick(),
+  presence: initLastTick(),
+  brilliance: initLastTick(),
 };

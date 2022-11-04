@@ -164,23 +164,23 @@ var _bgImagePath = "";
 function livelyPropertyListener(name, val)
 {
   switch(name) {
-    case "quality":
-      switch(val){
-        case 0:
-            config.DYE_RESOLUTION = 1024;
-          break;
-        case 1:
-          config.DYE_RESOLUTION = 512;
-          break;
-        case 2:
-          config.DYE_RESOLUTION = 256;
-          break;
-        case 3:
-          config.DYE_RESOLUTION = 128;
-          break;
-      }
-      initFramebuffers();
-      break;
+  case "quality":
+    switch(val){
+      case 0:
+          config.DYE_RESOLUTION = 1024;
+        break;
+      case 1:
+        config.DYE_RESOLUTION = 512;
+        break;
+      case 2:
+        config.DYE_RESOLUTION = 256;
+        break;
+      case 3:
+        config.DYE_RESOLUTION = 128;
+        break;
+    }
+    initFramebuffers();
+    break;
   case "simResolution":
     switch(val){
       case 0:
@@ -246,10 +246,10 @@ function livelyPropertyListener(name, val)
   case "bgImgChk":
     _bgImageChk = val;
     config.TRANSPARENT = val;
-        if (_bgImageChk)
-        {
-            document.body.style.backgroundImage = "url(" + _bgImagePath.replace('\\', '/') + ")";
-        }
+    if (_bgImageChk)
+    {
+      document.body.style.backgroundImage = "url(" + _bgImagePath.replace('\\', '/') + ")";
+    }
     break;
   case "imgSelect":
       _bgImagePath = val;
@@ -258,6 +258,7 @@ function livelyPropertyListener(name, val)
           document.body.style.backgroundImage = "url(" + val.replace('\\', '/') + ")";
       }
       break;
+
   case "randomSplats":
     _randomSplats = val;
     break;

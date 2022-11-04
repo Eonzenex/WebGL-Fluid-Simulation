@@ -1,6 +1,6 @@
 {
-  "AppVersion": "0.3.2.0",
-  "Title": "Fluids Updated",
+  "AppVersion": "0.4.2.0",
+  "Title": "Fluids v456",
   "Thumbnail": "fluid.jpg",
   "Preview": "fluid_preview.gif",
   "Desc": "Fluid simulation using WebGL, reacts with system audio & cursor.",

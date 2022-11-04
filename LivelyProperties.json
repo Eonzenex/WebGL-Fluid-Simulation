@@ -132,6 +132,7 @@
     "value": false,
     "text": "Background"
   },
+
   "audioSplatType": {
     "type": "dropdown",
     "value": 0,
