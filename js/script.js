@@ -54,7 +54,8 @@ let config = {
     SUNRAYS_RESOLUTION: 196,
     SUNRAYS_WEIGHT: 1.0,
     SOUND_SENSITIVITY: 0.25,
-    FREQ_RANGE: 8,
+    FREQ_RANGE: 40,
+    FREQ_MULTI:0.1,
 }
 
 var timer = setInterval(randomSplat, 3500);
@@ -76,8 +77,9 @@ document.addEventListener("visibilitychange", function() {
 
 let timeout;
 let timeoutBool=true;
+let lastBass = 0;
 function livelyAudioListener(audioArray)  {
-    if (audioArray[0] > 5 || _isSleep == true)
+    if (audioArray[0] === 0 || _isSleep == true)
     {
         _runRandom = true;
         return;
@@ -87,7 +89,7 @@ function livelyAudioListener(audioArray)  {
         return;
     }
 
-    if(audioArray[0]>0.1 && _runRandom){
+    if(audioArray[0]>=0.001 && _runRandom){
         _runRandom = false;
         clearTimeout(timeout);
         timeoutBool=true;
@@ -100,17 +102,16 @@ function livelyAudioListener(audioArray)  {
     }
 
     let bass = 0.0;
-    let half = Math.floor(audioArray.length / 2);
 
-    for (let i = 0; i <= config.FREQ_RANGE; i++) {
-        bass += audioArray[i];
-        bass += audioArray[half + i];
-    }
-    bass /= (config.FREQ_RANGE * 2);
+    for (let i = 0; i <= config.FREQ_RANGE; i++) 
+      bass += audioArray[i]*2;
+      
+    bass /= (config.FREQ_RANGE * 2) * config.FREQ_MULTI;
 
     switch (_audioSplatType) {
       case 0:  // Random splats
-        multipleSplats(Math.floor((bass * config.SOUND_SENSITIVITY) * 10));
+        multipleSplats(Math.floor((bass * config.SOUND_SENSITIVITY) * 10) - lastBass);
+		lastBass = (bass,Math.floor((bass * config.SOUND_SENSITIVITY) * 10 ));
         break;
       case 1:  // Custom audio splats
         tickAudio(audioArray);
@@ -133,7 +134,6 @@ function livelyAudioListener(audioArray)  {
     } else {
       ambientAudioSplats(false);
     }
-}
 
 function multipleSplats (amount) {
     for (let i = 0; i < amount; i++) {
@@ -157,10 +157,10 @@ function generateColor () {
     return c;
 }
 
-var _randomSplats = false;
-var _audioReact = false;
-var _bgImageChk = false;
-var _bgImagePath = "";
+let _randomSplats = false;
+let _audioReact = false;
+let _bgImageChk = false;
+let _bgImagePath = "";
 function livelyPropertyListener(name, val)
 {
   switch(name) {
@@ -284,7 +284,7 @@ function livelyPropertyListener(name, val)
 }
 
 function hexToRgb(hex) {
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result ? {
     r: parseInt(result[1], 16),
     g: parseInt(result[2], 16),
